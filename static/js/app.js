@@ -104,4 +104,12 @@ d3.json("samples.json").then(function (data) {
 
     Plotly.newPlot("bar", data);
 
+    // Test subject ID selector
+    var selector = d3.selectAll("#selDataset");
+    for (var i = 0; i < names.length; i++) {
+        selector.append("option")
+            .attr("value", names[i])
+            .text(names[i]);
+    }
+
 })
