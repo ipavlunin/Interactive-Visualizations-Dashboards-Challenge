@@ -26,4 +26,31 @@ d3.json("samples.json").then(function (data) {
             .text(`${key}: ${value}`);
     }
 
+    // Bubble Plot for 1st test subject ID
+    var trace1 = {
+        x: samples[0].otu_ids,
+        y: samples[0].sample_values,
+        text: samples[0].otu_labels,
+        mode: 'markers',
+        marker: {
+            size: samples[0].sample_values,
+            color: samples[0].otu_ids
+        }
+    };
+
+    var data = [trace1];
+
+    var layout = {
+        xaxis: {
+            title: "OTU IDs",
+        },
+        yaxis: {
+            autorange: 'reversed',
+            type: "category"
+        },
+        showlegend: false
+    };
+
+    Plotly.newPlot('bubble', data, layout);
+
 })
