@@ -147,4 +147,23 @@ d3.json("samples.json").then(function (data) {
 
                 Plotly.newPlot('bubble', data, layout);
 
+                // Bar Plot for the first 10 samples of selected test subject ID
+                var samples_list = samples[i].sample_values.slice(0, 10);
+                samples_rev = samples_list.reverse();
+                var ids_list = samples[i].otu_ids.slice(0, 10);
+                ids_list = ids_list.map(d => `OTS ${d.toString()}`);
+                ids_rev = ids_list.reverse();
+                var labels_list = samples[i].otu_labels.slice(0, 10);
+                labels_rev = labels_list.reverse();
+
+                var data = [{
+                    type: 'bar',
+                    x: samples_rev,
+                    y: ids_rev,
+                    text: labels_rev,
+                    orientation: 'h'
+                }]
+
+                Plotly.newPlot("bar", data);
+
             })
