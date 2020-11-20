@@ -127,4 +127,24 @@ d3.json("samples.json").then(function (data) {
                         .text(`${key}: ${value}`);
                 }
 
+                // Bubble Plot for selected test subject ID
+                var trace1 = {
+                    x: samples[i].otu_ids,
+                    y: samples[i].sample_values,
+                    text: samples[i].otu_labels,
+                    mode: 'markers',
+                    marker: {
+                        size: samples[i].sample_values,
+                        color: samples[i].otu_ids
+                    }
+                };
+
+                var data = [trace1];
+
+                var layout = {
+                    showlegend: false
+                };
+
+                Plotly.newPlot('bubble', data, layout);
+
             })
