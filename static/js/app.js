@@ -166,4 +166,37 @@ d3.json("samples.json").then(function (data) {
 
                 Plotly.newPlot("bar", data);
 
-            })
+                // Gauge Plot for selected test subject ID
+                var data = [
+                    {
+                        domain: { x: [0, 1], y: [0, 1] },
+                        value: metadata[i].wfreq,
+                        title: { text: "Scrubs per Week" },
+                        type: "indicator",
+                        mode: "gauge+number",
+                        text: ["0-1", "1-2", "2-3", "3-4", "4-5", "5-6", "6-7", "7-8", "8-9"],
+                        textinfo: "text",
+                        textposition: "inside",
+                        delta: { reference: 4 },
+                        gauge: {
+                            axis: { range: [0, 9] },
+                            steps: [
+                                { range: [0, 1], color: "EBF0D2" },
+                                { range: [1, 2], color: "E0EE9D" },
+                                { range: [2, 3], color: "CCFF99" },
+                                { range: [3, 4], color: "B2FF66" },
+                                { range: [4, 5], color: "99FF33" },
+                                { range: [5, 6], color: "80FF00" },
+                                { range: [6, 7], color: "66CC00" },
+                                { range: [7, 8], color: "4C9900" },
+                                { range: [8, 9], color: "336600" },
+                            ],
+                        }
+                    }
+                ];
+                var layout = { width: 500, height: 350 };
+                Plotly.newPlot('gauge', data, layout);
+            }
+        }
+    }
+})
