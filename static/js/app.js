@@ -85,4 +85,23 @@ d3.json("samples.json").then(function (data) {
     var layout = { width: 500, height: 350 };
     Plotly.newPlot('gauge', data, layout);
 
+    // Bar Plot for first 10 samples of selected test subject ID
+    var samplelist10 = samples[0].sample_values.slice(0, 10);
+    samplerev10 = samplelist10.reverse();
+    var idlist10 = samples[0].otu_ids.slice(0, 10);
+    idlist10 = idlist10.map(d => `OTS ${d.toString()}`);
+    idrev10 = idlist10.reverse();
+    var labellist10 = samples[0].otu_labels.slice(0, 10);
+    labelrev10 = labellist10.reverse();
+
+    var data = [{
+        type: 'bar',
+        x: samplerev10,
+        y: idrev10,
+        text: labelrev10,
+        orientation: 'h'
+    }]
+
+    Plotly.newPlot("bar", data);
+
 })
