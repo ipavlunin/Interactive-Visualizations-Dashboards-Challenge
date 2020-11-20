@@ -18,4 +18,12 @@ d3.json("samples.json").then(function (data) {
     var otulabels = samples.map(data => data.otu_labels)
     console.log(otulabels)
 
+    // Demographic Info for 1st test subject ID
+    var sampleData = d3.select("#sample-metadata");
+    for (const [key, value] of Object.entries(metadata[0])) {
+        var p = sampleData.append("p")
+            .attr("id", "metadata")
+            .text(`${key}: ${value}`);
+    }
+
 })
