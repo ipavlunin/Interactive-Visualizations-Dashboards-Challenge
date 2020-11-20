@@ -112,4 +112,19 @@ d3.json("samples.json").then(function (data) {
             .text(names[i]);
     }
 
-})
+    // Function for test subject ID change
+    selector.on("change", optionChanged)
+    function optionChanged() {
+
+        // Demographic Info Update
+        var option = selector.node().value;
+        var remOld = d3.selectAll("#metadata").remove();
+        for (var i = 0; i < metadata.length; i++) {
+            if (parseInt(option) === metadata[i].id) {
+                for (const [key, value] of Object.entries(metadata[i])) {
+                    var p = sampleData.append("p")
+                        .attr("id", "metadata")
+                        .text(`${key}: ${value}`);
+                }
+
+            })
